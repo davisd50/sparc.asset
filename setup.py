@@ -16,7 +16,7 @@ setup(name='sparc.asset',
       keywords='',
       author='',
       author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      url='http://github.com/davisd50/sparc.asset',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['sparc'],
@@ -25,6 +25,7 @@ setup(name='sparc.asset',
       install_requires=[
           'setuptools',
           'sparc.common',
+          'zope.schema'
           # -*- Extra requirements: -*-
       ],
       entry_points="""
