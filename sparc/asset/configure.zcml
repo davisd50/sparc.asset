@@ -1,8 +1,11 @@
-<configure xmlns="http://namespaces.zope.org/zope">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="sparc.asset">
  
  <utility
-   factory=".CommandLaunch.CommandLaunchFactory"
-   name="sparc.CommandLaunch"
+   component=".command.CommandLaunchFactory"
+   name="sparc.asset.command_launch"
    />
    
 </configure>

@@ -1,8 +1,20 @@
+"""Test
+"""
 import unittest
-from doctest import DocTestSuite
+from doctest import DocFileSuite
+
+import sparc.asset
+
+def test_suite():
+    return unittest.TestSuite((
+        DocFileSuite('command.txt',
+                     package=sparc.asset),))
+
+if __name__ == '__main__':
+    unittest.main(defaultTest='test_suite')
+
 #from sparc.asset import CommandLaunch
 
-import os
 
 class testCommand(unittest.TestCase):
     """A test class for the command module.
@@ -10,11 +22,11 @@ class testCommand(unittest.TestCase):
     Usage (from command shell): 
         # python test_command.py
     """
-    _root = '/' if os.path.join == '/' else 'C:\\'
+    #_root = '/' if os.path.join == '/' else 'C:\\'
     
-    def test_suite(self):
-        # This will test the doctest(s) contained in command.py
-        return unittest.TestSuite((DocTestSuite('sparc.asset.CommandLaunch'),))
+    #def test_suite(self):
+    #    # This will test the doctest(s) contained in command.py
+    #    return unittest.TestSuite((DocTestSuite('sparc.asset.CommandLaunch'),))
 
 
     '''def testWindowsPath(self):
@@ -34,6 +46,3 @@ class testCommand(unittest.TestCase):
         self.assertEqual(myExecutableList[3],'cdrive','Fails on '+myExecutableList[3])
         self.assertEqual(myExecutableList[4],'bin','Fails on '+myExecutableList[4])'''
 
-
-if __name__ == '__main__':
-    unittest.main()
