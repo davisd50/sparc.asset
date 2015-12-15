@@ -2,7 +2,7 @@ import os
 from zope.interface import implements
 from zope.component.factory import Factory
 
-from sparc.asset.interfaces import ICommandLaunch
+from interfaces import ICommandLaunch
 
 class CommandLaunch(object):
     implements(ICommandLaunch)
