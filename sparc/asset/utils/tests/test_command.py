@@ -3,12 +3,12 @@
 import unittest
 from doctest import DocFileSuite
 
-import sparc.asset
+import sparc.asset.utils
 
 def test_suite():
     return unittest.TestSuite((
         DocFileSuite('command.txt',
-                     package=sparc.asset),))
+                     package=sparc.asset.utils),))
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')

@@ -4,7 +4,7 @@ subprocess.call().  We'll use the ZCA configured component to test this
 utility.
 
     First, we need to configure our components
-    >>> from sparc.common import Configure
+    >>> from sparc.configuration.zcml import Configure
     >>> import sparc.asset
     >>> Configure(sparc.asset)
 

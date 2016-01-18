@@ -32,8 +32,9 @@ setup(name='sparc.asset',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'sparc.common',
-          'zope.schema'
+          'zope.schema',
+          'sparc.configuration',
+          'sparc.entity'
           # -*- Extra requirements: -*-
       ],
       entry_points="""

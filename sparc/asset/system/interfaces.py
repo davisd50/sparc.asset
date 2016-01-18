@@ -1,6 +1,6 @@
-from sparc.common import IIdentified
+from sparc.entity import IEntity
 
 
-class ISystem(IIdentified):
+class ISystem(IEntity):
     """A system or application"""
     

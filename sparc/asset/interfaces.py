@@ -1,4 +1,4 @@
-from sparc.common import IIdentified
+from sparc.entity import IEntity
 
-class IAsset(IIdentified):
+class IAsset(IEntity):
     """An asset, device, or host"""
