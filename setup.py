@@ -34,6 +34,7 @@ setup(name='sparc.asset',
           'setuptools',
           'zope.schema',
           'ipaddress',
+          'sparc.i18n',
           'sparc.configuration',
           'sparc.entity'
           # -*- Extra requirements: -*-

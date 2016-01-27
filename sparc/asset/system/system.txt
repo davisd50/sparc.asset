@@ -1,0 +1,21 @@
+A System
+---------
+A system is a service, application, or other entity that has an Id, name,
+and description.
+
+Configure components
+>>> from sparc.asset import Configure
+>>> Configure()
+
+Create a basic system
+>>> from zope.component import createObject
+>>> kwargs = {
+... 		  'id': u'my system id',
+...           'name': u'A system name',
+...           'description': u'a system description'
+... 		 }
+>>> my_system = createObject(u'sparc.asset.system', **kwargs)
+>>> my_system.getId()
+u'my system id'
+>>> my_system.name
+u'A system name'
