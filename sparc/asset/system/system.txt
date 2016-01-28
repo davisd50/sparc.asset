@@ -8,14 +8,41 @@ Configure components
 >>> Configure()
 
 Create a basic system
->>> from zope.component import createObject
 >>> kwargs = {
 ... 		  'id': u'my system id',
 ...           'name': u'A system name',
-...           'description': u'a system description'
+...           'description': u'a system description',
+...			  'type': u'test'
 ... 		 }
+
+Our first attempt to create the system will fail, because we have not yet
+defined our possible system types within a vocabulary 
+>>> from zope.component import createObject
+>>> from zope.schema.vocabulary import VocabularyRegistryError
+>>> try:
+...     createObject(u'sparc.asset.system', **kwargs)
+...     assert False
+... except VocabularyRegistryError:
+... 	pass
+
+Now we'll create a vocabulary of possible system types
+>>> from zope.schema.interfaces import IVocabularyFactory
+>>> from zope.interface import alsoProvides
+>>> from zope.schema.vocabulary import SimpleVocabulary
+>>> vocab_factory = lambda x: SimpleVocabulary.fromValues(['test'])
+>>> alsoProvides(vocab_factory, IVocabularyFactory)
+
+In addition, we need to add this new factory to the schema vocab registry.
+This would normally be completed via ZCML
+>>> from zope.schema.vocabulary import getVocabularyRegistry
+>>> vr = getVocabularyRegistry()
+>>> vr.register(u'sparc.asset.system.types', vocab_factory)
+
+Now, let's try creating our system again
 >>> my_system = createObject(u'sparc.asset.system', **kwargs)
 >>> my_system.getId()
 u'my system id'
 >>> my_system.name
 u'A system name'
+>>> my_system.type
+u'test'
