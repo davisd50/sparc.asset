@@ -26,17 +26,8 @@ defined our possible system types within a vocabulary
 ... 	pass
 
 Now we'll create a vocabulary of possible system types
->>> from zope.schema.interfaces import IVocabularyFactory
->>> from zope.interface import alsoProvides
->>> from zope.schema.vocabulary import SimpleVocabulary
->>> vocab_factory = lambda x: SimpleVocabulary.fromValues(['test'])
->>> alsoProvides(vocab_factory, IVocabularyFactory)
-
-In addition, we need to add this new factory to the schema vocab registry.
-This would normally be completed via ZCML
->>> from zope.schema.vocabulary import getVocabularyRegistry
->>> vr = getVocabularyRegistry()
->>> vr.register(u'sparc.asset.system.types', vocab_factory)
+>>> from sparc.asset.system.tests import register_system_types_vocab_from_values
+>>> register_system_types_vocab_from_values(['test'])
 
 Now, let's try creating our system again
 >>> my_system = createObject(u'sparc.asset.system', **kwargs)
