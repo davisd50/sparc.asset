@@ -18,11 +18,11 @@ Create a basic system
 Our first attempt to create the system will fail, because we have not yet
 defined our possible system types within a vocabulary 
 >>> from zope.component import createObject
->>> from zope.schema.vocabulary import VocabularyRegistryError
+>>> from zope.component import ComponentLookupError
 >>> try:
 ...     createObject(u'sparc.asset.system', **kwargs)
 ...     assert False
-... except VocabularyRegistryError:
+... except ComponentLookupError:
 ... 	pass
 
 Now we'll create a vocabulary of possible system types
