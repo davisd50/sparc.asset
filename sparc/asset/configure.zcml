@@ -5,5 +5,10 @@
     
     <include package=".system" />
     <include package=".utils" />
+    
+    <utility
+    	component=".asset.sparcAssetFactory"
+    	name="sparc.asset.asset"
+    	/>
 
 </configure>
