@@ -6,7 +6,8 @@ MessageFactory = SparcMessageFactory('sparc.asset')
 from importlib import import_module
 from sparc.configuration.zcml import Configure as SparcConfigure
 def Configure():
-    SparcConfigure([import_module(__name__)])
+    SparcConfigure([import_module(__name__),
+                    import_module('zope.annotation')])
 
 from interfaces import IAsset
 from interfaces import ILocatableAsset

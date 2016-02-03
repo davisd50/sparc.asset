@@ -1,0 +1,37 @@
+Entity Location
+----------------
+We've created adapters to allow the assignment of location to annotatable 
+Sparc Entities (e.g. Sparc Assets).
+
+First, let configure ZCA
+>>> from sparc.asset import Configure
+>>> Configure()
+
+We'll test a simple asset creation.  First we create a related event
+>>> from zope.component import createObject
+>>> from datetime import datetime
+>>> kwargs = {
+... 			'id': u'12345',
+...				'name': u'An asset',
+...				'description': u'A description'
+...				}
+>>> my_asset = createObject(u'sparc.asset.asset', **kwargs)
+>>> my_asset.getId()
+u'12345'
+
+IP Network Address Location
+----------------------------
+We can assign a network address to our asset via the adapter
+>>> from sparc.asset.location import IIPNetworkAddress
+>>> import ipaddress
+>>> IIPNetworkAddress(my_asset).address = ipaddress.ip_address(u'1.1.1.1')
+>>> IIPNetworkAddress(my_asset).address
+IPv4Address(u'1.1.1.1')
+
+IP Network Location
+--------------------
+We can identify what network our asset is on
+>>> from sparc.asset.location import IIPNetwork
+>>> IIPNetwork(my_asset).network = ipaddress.ip_network(u'1.1.1.0/24')
+>>> IIPNetwork(my_asset).network
+IPv4Network(u'1.1.1.0/24')

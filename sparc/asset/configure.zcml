@@ -3,6 +3,7 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="sparc.asset">
     
+    <include package=".location" />
     <include package=".system" />
     <include package=".utils" />
     
