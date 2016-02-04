@@ -23,28 +23,43 @@ class ILocation(Interface):
     def __ne__(other):
         """True if not equal to other"""
 
+class ILocations(Interface):
+    """A set of locations"""
+    locations = Attribute('A set of ILocation objects')
+
+class INetworkAddressLocations(ILocations):
+    """A set IIPNetworkAddress objects"""
+    locations = schema.Set(
+            title = u'IP Addresses',
+            description = u'a set of INetworkAddress objects',
+            value_type = schema.Field(
+                    constraint = lambda v: INetworkAddress.providedBy(v)
+                    )
+            )
+
 # NETWORK INFORMATION
 class INetwork(ILocation):
     """A network that contains addresses"""
     network = Attribute('Network location identifier')
 
+class INetworkAddress(INetwork):
+    """A network address location"""
+    address = Attribute('Network address location identifier')
+
+# IP NETWORK INFORMATION
 class IIPNetwork(INetwork):
     """Network location identified via Python ipaddress.ip_network"""
     network = schema.Field(
             title = u'IIPNetwork',
-            description = u'An IP network identifier',
+            description = u'An IP network identifier from ipaddress package',
             constraint = _is_valid_ipnetwork
             )
 
-class INetworkAddress(ILocation):
-    """A network address location"""
-    address = Attribute('Network address location identifier')
-
-class IIPNetworkAddress(INetworkAddress):
+class IIPNetworkAddress(INetworkAddress, IIPNetwork):
     """Network address locaton identified via Python ipaddress.ip_address"""
     address = schema.Field(
             title = u'IIPNetworkAddress',
-            description = u'An IP address',
+            description = u'An IPv4Address/IPv6Address address from ipaddress package',
             constraint = _is_valid_ipaddress
             )
 

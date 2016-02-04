@@ -1,46 +1,49 @@
 from BTrees.OOBTree import OOBTree
 from zope.annotation.interfaces import IAnnotations
-from zope.annotation.interfaces import IAnnotatable
+from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.component import adapts
+from zope.component.factory import Factory
 from zope.schema import getFields
+from zope.schema.fieldproperty import FieldProperty
 from zope.interface import implements
+from sparc.entity import SparcEntity
+from interfaces import INetworkAddressLocations
 from interfaces import IIPNetworkAddress
 from interfaces import IIPNetwork
 
-class IPNetworkAddressForAnnotableObjects(object):
-    implements(IIPNetworkAddress)
-    adapts(IAnnotatable)
-    
-    def __init__(self, context):
-        self.context = context
-        self.annotations = IAnnotations(context).\
-                                setdefault('IIPNetworkAddress', OOBTree())
-        if 'address' not in self.annotations:
-            self.annotations['address'] = None
-    
-    @property
-    def address(self):
-        return self.annotations['address']
-    @address.setter
-    def address(self, value):
-        getFields(IIPNetworkAddress)['address'].validate(value)
-        self.annotations['address'] = value
-
-class IPNetworkForAnnotableObjects(object):
+class IPNetwork(object):
     implements(IIPNetwork)
-    adapts(IAnnotatable)
+    
+    def __init__(self, **kwargs):
+        if 'network' in kwargs: # allow instantiaion without a network
+            self.network = kwargs['network']
+    network = FieldProperty(IIPNetwork['network'])
+ipNetworkFactory = Factory(IPNetwork)
+
+class IIPNetworkAddress(IPNetwork):
+    implements(IIPNetworkAddress)
+    
+    def __init__(self, **kwargs):
+        super(IIPNetworkAddress, self).__init__(**kwargs)
+        self.address = kwargs['address']
+    address = FieldProperty(IIPNetworkAddress['address'])
+ipNetworkAddressFactory = Factory(IIPNetworkAddress)
+
+class NetworkAddressLocationsForAnnotableObjects(object):
+    implements(INetworkAddressLocations)
+    adapts(IAttributeAnnotatable)
     
     def __init__(self, context):
         self.context = context
         self.annotations = IAnnotations(context).\
-                                setdefault('IIPNetwork', OOBTree())
-        if 'network' not in self.annotations:
-            self.annotations['network'] = None
+                                setdefault('INetworkAddressLocations', OOBTree())
+        if 'locations' not in self.annotations:
+            self.annotations['locations'] = set()
     
     @property
-    def network(self):
-        return self.annotations['network']
-    @network.setter
-    def network(self, value):
-        getFields(IIPNetwork)['network'].validate(value)
-        self.annotations['network'] = value
+    def locations(self):
+        return self.annotations['locations']
+    @locations.setter
+    def locations(self, value):
+        getFields(INetworkAddressLocations)['locations'].validate(value)
+        self.annotations['locations'] = value

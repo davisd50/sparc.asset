@@ -7,7 +7,7 @@ First, let configure ZCA
 >>> from sparc.asset import Configure
 >>> Configure()
 
-We'll test a simple asset creation.  First we create a related event
+We'll test a simple asset creation.
 >>> from zope.component import createObject
 >>> from datetime import datetime
 >>> kwargs = {
@@ -19,19 +19,24 @@ We'll test a simple asset creation.  First we create a related event
 >>> my_asset.getId()
 u'12345'
 
-IP Network Address Location
-----------------------------
-We can assign a network address to our asset via the adapter
->>> from sparc.asset.location import IIPNetworkAddress
->>> import ipaddress
->>> IIPNetworkAddress(my_asset).address = ipaddress.ip_address(u'1.1.1.1')
->>> IIPNetworkAddress(my_asset).address
-IPv4Address(u'1.1.1.1')
+Now lets create a couple ip addresses
+>>> from ipaddress import ip_address
+>>> addr1 = createObject(u'sparc.asset.ipaddress', 
+... 									address = ip_address(u'192.168.1.1'))
+>>> addr1.address
+IPv4Address(u'192.168.1.1')
+>>> addr2 = createObject(u'sparc.asset.ipaddress', 
+... 									address = ip_address(u'10.10.1.1'))
+>>> addr2.address
+IPv4Address(u'10.10.1.1')
 
-IP Network Location
---------------------
-We can identify what network our asset is on
->>> from sparc.asset.location import IIPNetwork
->>> IIPNetwork(my_asset).network = ipaddress.ip_network(u'1.1.1.0/24')
->>> IIPNetwork(my_asset).network
-IPv4Network(u'1.1.1.0/24')
+We can now associate these addresses with our asset
+>>> from sparc.asset.location import INetworkAddressLocations
+>>> INetworkAddressLocations(my_asset).locations.add(addr1)
+>>> INetworkAddressLocations(my_asset).locations.add(addr2)
+
+let's test to make sure the information was assigned
+>>> addr1 in INetworkAddressLocations(my_asset).locations
+True
+>>> addr2 in INetworkAddressLocations(my_asset).locations
+True

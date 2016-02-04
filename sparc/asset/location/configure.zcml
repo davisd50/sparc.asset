@@ -2,17 +2,21 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="sparc.asset">
-
-    <adapter
-    	for="zope.annotation.interfaces.IAttributeAnnotatable"
-    	provides="sparc.asset.location.IIPNetworkAddress"
-    	factory=".location.IPNetworkAddressForAnnotableObjects"
+    
+    <utility
+    	component=".location.ipNetworkFactory"
+    	name="sparc.asset.ipnetwork"
+    	/>
+    
+    <utility
+    	component=".location.ipNetworkAddressFactory"
+    	name="sparc.asset.ipaddress"
     	/>
 
     <adapter
     	for="zope.annotation.interfaces.IAttributeAnnotatable"
-    	provides="sparc.asset.location.IIPNetwork"
-    	factory=".location.IPNetworkForAnnotableObjects"
+    	provides="sparc.asset.location.INetworkAddressLocations"
+    	factory=".location.NetworkAddressLocationsForAnnotableObjects"
     	/>
 
 </configure>
