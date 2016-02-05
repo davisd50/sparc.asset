@@ -11,13 +11,13 @@ We'll test a simple asset creation.
 >>> from zope.component import createObject
 >>> from datetime import datetime
 >>> kwargs = {
-... 			'id': u'12345',
+... 			'id': '12345',
 ...				'name': u'An asset',
 ...				'description': u'A description'
 ...				}
 >>> my_asset = createObject(u'sparc.asset.asset', **kwargs)
 >>> my_asset.getId()
-u'12345'
+'12345'
 
 Now lets create a couple ip addresses
 >>> from ipaddress import ip_address

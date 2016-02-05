@@ -9,7 +9,7 @@ Configure components
 
 Create a basic system
 >>> kwargs = {
-... 		  'id': u'my system id',
+... 		  'id': 'my system id',
 ...           'name': u'A system name',
 ...           'description': u'a system description',
 ...			  'type': u'test'
@@ -32,7 +32,7 @@ Now we'll create a vocabulary of possible system types
 Now, let's try creating our system again
 >>> my_system = createObject(u'sparc.asset.system', **kwargs)
 >>> my_system.getId()
-u'my system id'
+'my system id'
 >>> my_system.name
 u'A system name'
 >>> my_system.type
