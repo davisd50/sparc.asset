@@ -30,6 +30,7 @@ Now we'll create a vocabulary of possible system types
 >>> register_system_types_vocab_from_values(['test'])
 
 Now, let's try creating our system again
+>>> from sparc.asset.system import ISystem
 >>> my_system = createObject(u'sparc.asset.system', **kwargs)
 >>> my_system.getId()
 'my system id'
@@ -37,3 +38,15 @@ Now, let's try creating our system again
 u'A system name'
 >>> my_system.type
 u'test'
+>>> ISystem.providedBy(my_system)
+True
+
+Test a persistence
+>>> from persistent.interfaces import IPersistent
+>>> my_system = createObject(u'sparc.asset.persistent.system', **kwargs)
+>>> IPersistent.providedBy(my_system)
+True
+>>> ISystem.providedBy(my_system)
+True
+>>> ISystem.providedBy(my_system)
+True

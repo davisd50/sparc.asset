@@ -11,5 +11,9 @@
     	component=".asset.sparcAssetFactory"
     	name="sparc.asset.asset"
     	/>
+    <utility
+    	component=".asset.persistentSparcAssetFactory"
+    	name="sparc.asset.persistent.asset"
+    	/>
 
 </configure>

@@ -32,6 +32,7 @@ setup(name='sparc.asset',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'persistent',
           'zope.annotation',
           'zope.schema',
           'ipaddress',

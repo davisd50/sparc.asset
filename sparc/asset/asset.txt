@@ -8,6 +8,7 @@ First, let configure ZCA
 >>> Configure()
 
 We'll test a simple asset creation.  First we create a related event
+>>> from sparc.asset import IAsset
 >>> from zope.component import createObject
 >>> from datetime import datetime
 >>> kwargs = {
@@ -15,6 +16,18 @@ We'll test a simple asset creation.  First we create a related event
 ...				'name': u'An asset',
 ...				'description': u'A description'
 ...				}
->>> my_asset = createObject(u'sparc.asset.asset', **kwargs)
->>> my_asset.getId()
+>>> asset = createObject(u'sparc.asset.asset', **kwargs)
+>>> asset.getId()
 '12345'
+>>> IAsset.providedBy(asset)
+True
+
+Test a persistent asset
+>>> from persistent.interfaces import IPersistent
+>>> asset = createObject(u'sparc.asset.persistent.asset', **kwargs)
+>>> IPersistent.providedBy(asset)
+True
+>>> IAsset.providedBy(asset)
+True
+>>> IAsset.providedBy(asset)
+True

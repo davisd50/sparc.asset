@@ -1,3 +1,4 @@
+from persistent import Persistent
 from zope.component.factory import Factory
 from zope.interface import implements
 from sparc.entity import SparcEntity
@@ -9,3 +10,9 @@ class SparcAsset(SparcEntity):
     def __init__(self, **kwargs):
         super(SparcAsset, self).__init__(**kwargs)
 sparcAssetFactory = Factory(SparcAsset)
+
+
+class PersistentSparcAsset(SparcAsset, Persistent):
+    """A Sparc Asset that can be persisted in a ZODB"""
+    implements(IAsset)
+persistentSparcAssetFactory = Factory(PersistentSparcAsset)

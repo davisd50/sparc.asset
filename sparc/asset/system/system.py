@@ -1,3 +1,4 @@
+from persistent import Persistent
 from zope.interface import implements
 from zope.component.factory import Factory
 from zope.schema.fieldproperty import FieldProperty
@@ -13,5 +14,10 @@ class SparcSystem(SparcEntity):
         self.type = kwargs['type']
     
     type = FieldProperty(ISystem['type'])
-
 sparcSystemFactory = Factory(SparcSystem)
+
+
+class PersistentSparcSystem(SparcSystem, Persistent):
+    """A Sparc entity that can be persisted in a ZODB"""
+    implements(ISystem)
+persistentSparcSystemFactory = Factory(PersistentSparcSystem)

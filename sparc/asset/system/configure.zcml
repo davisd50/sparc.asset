@@ -9,5 +9,9 @@
     	component=".system.sparcSystemFactory"
     	name="sparc.asset.system"
     	/>
+    <utility
+    	component=".system.persistentSparcSystemFactory"
+    	name="sparc.asset.persistent.system"
+    	/>
 
 </configure>
