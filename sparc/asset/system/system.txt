@@ -19,10 +19,11 @@ Our first attempt to create the system will fail, because we have not yet
 defined our possible system types within a vocabulary 
 >>> from zope.component import createObject
 >>> from zope.component import ComponentLookupError
+>>> from zope.schema.interfaces import ConstraintNotSatisfied
 >>> try:
 ...     createObject(u'sparc.asset.system', **kwargs)
 ...     assert False
-... except ComponentLookupError:
+... except (ConstraintNotSatisfied, ComponentLookupError):
 ... 	pass
 
 Now we'll create a vocabulary of possible system types
