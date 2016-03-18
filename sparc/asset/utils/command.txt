@@ -3,11 +3,6 @@ This utility helps to identify and prepare lists that can be passed to
 subprocess.call().  We'll use the ZCA configured component to test this
 utility.
 
-    First, we need to configure our components
-    >>> from sparc.configuration.zcml import Configure
-    >>> import sparc.asset
-    >>> Configure(sparc.asset)
-
     Ok, let's get an object
     >>> from zope.component import createObject
     >>> args = ['ping', ['-c', '1', 'www.google.com']]
