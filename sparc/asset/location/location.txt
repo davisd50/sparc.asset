@@ -3,10 +3,6 @@ Entity Location
 We've created adapters to allow the assignment of location to annotatable 
 Sparc Entities (e.g. Sparc Assets).
 
-First, let configure ZCA
->>> from sparc.asset import Configure
->>> Configure()
-
 We'll test a simple asset creation.
 >>> from zope.component import createObject
 >>> from datetime import datetime

@@ -3,20 +3,16 @@ A System
 A system is a service, application, or other entity that has an Id, name,
 and description.
 
-Configure components
->>> from sparc.asset import Configure
->>> Configure()
-
 Create a basic system
 >>> kwargs = {
 ... 		  'id': 'my system id',
 ...           'name': u'A system name',
 ...           'description': u'a system description',
-...			  'type': u'test'
+...			  'type': u'badtest'
 ... 		 }
 
 Our first attempt to create the system will fail, because we have not yet
-defined our possible system types within a vocabulary 
+defined a valid system type within the testing vocabulary 
 >>> from zope.component import createObject
 >>> from zope.component import ComponentLookupError
 >>> from zope.schema.interfaces import ConstraintNotSatisfied
@@ -26,9 +22,8 @@ defined our possible system types within a vocabulary
 ... except (ConstraintNotSatisfied, ComponentLookupError):
 ... 	pass
 
-Now we'll create a vocabulary of possible system types
->>> from sparc.asset.system.tests import register_system_types_vocab_from_values
->>> register_system_types_vocab_from_values(['test'])
+Now we'll update with a valid type
+>>> kwargs['type'] = 'test_type_1'
 
 Now, let's try creating our system again
 >>> from sparc.asset.system import ISystem
@@ -38,7 +33,7 @@ Now, let's try creating our system again
 >>> my_system.name
 u'A system name'
 >>> my_system.type
-u'test'
+'test_type_1'
 >>> ISystem.providedBy(my_system)
 True
 

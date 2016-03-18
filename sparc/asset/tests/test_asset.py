@@ -1,13 +1,11 @@
 import unittest
-from doctest import DocTestSuite
-from doctest import DocFileSuite
+from sparc.testing.fixture import test_suite_mixin
 
-import sparc.asset
 
-def test_suite():
-    return unittest.TestSuite((
-        DocFileSuite('asset.txt',
-                     package=sparc.asset),))
+class test_suite(test_suite_mixin):
+    package = 'sparc.asset'
+    module = 'asset'
+
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')

@@ -3,10 +3,6 @@ Sparc Asset
 A Sparc asset is a Sparc Entity that represents an asset, device, or host (or
 something similar).
 
-First, let configure ZCA
->>> from sparc.asset import Configure
->>> Configure()
-
 We'll test a simple asset creation.  First we create a related event
 >>> from sparc.asset import IAsset
 >>> from zope.component import createObject
