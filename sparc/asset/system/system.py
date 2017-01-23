@@ -1,13 +1,12 @@
+from zope import interface
 from persistent import Persistent
-from zope.interface import implements
 from zope.component.factory import Factory
 from zope.schema.fieldproperty import FieldProperty
 from sparc.entity import SparcEntity
-from interfaces import ISystem
+from .interfaces import ISystem
 
-
+@interface.implementer(ISystem)
 class SparcSystem(SparcEntity):
-    implements(ISystem)
     
     def __init__(self, **kwargs):
         super(SparcSystem, self).__init__(**kwargs)
@@ -17,7 +16,7 @@ class SparcSystem(SparcEntity):
 sparcSystemFactory = Factory(SparcSystem)
 
 
+@interface.implementer(ISystem)
 class PersistentSparcSystem(SparcSystem, Persistent):
     """A Sparc entity that can be persisted in a ZODB"""
-    implements(ISystem)
 persistentSparcSystemFactory = Factory(PersistentSparcSystem)

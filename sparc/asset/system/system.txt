@@ -30,8 +30,8 @@ Now, let's try creating our system again
 >>> my_system = createObject(u'sparc.asset.system', **kwargs)
 >>> my_system.getId()
 'my system id'
->>> my_system.name
-u'A system name'
+>>> my_system.name == 'A system name'
+True
 >>> my_system.type
 'test_type_1'
 >>> ISystem.providedBy(my_system)

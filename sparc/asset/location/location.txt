@@ -19,12 +19,12 @@ Now lets create a couple ip addresses
 >>> from ipaddress import ip_address
 >>> addr1 = createObject(u'sparc.asset.ipaddress', 
 ... 									address = ip_address(u'192.168.1.1'))
->>> addr1.address
-IPv4Address(u'192.168.1.1')
+>>> str(addr1.address) == '192.168.1.1'
+True
 >>> addr2 = createObject(u'sparc.asset.ipaddress', 
 ... 									address = ip_address(u'10.10.1.1'))
->>> addr2.address
-IPv4Address(u'10.10.1.1')
+>>> str(addr2.address) == '10.10.1.1'
+True
 
 We can now associate these addresses with our asset
 >>> from sparc.asset.location import INetworkAddressLocations

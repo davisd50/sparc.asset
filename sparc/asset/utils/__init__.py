@@ -1,1 +1,1 @@
-from interfaces import ICommandLaunch
+from .interfaces import ICommandLaunch

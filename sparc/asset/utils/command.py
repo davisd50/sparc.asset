@@ -1,11 +1,11 @@
 import os
-from zope.interface import implements
+from zope import interface
 from zope.component.factory import Factory
 
-from interfaces import ICommandLaunch
+from .interfaces import ICommandLaunch
 
+@interface.implementer(ICommandLaunch)
 class CommandLaunch(object):
-    implements(ICommandLaunch)
     
     def __init__(self, name, arguments=None, parent=None):
         """Initialize a ICommandLaunch object

@@ -1,1 +1,1 @@
-from interfaces import ISystem
+from .interfaces import ISystem
