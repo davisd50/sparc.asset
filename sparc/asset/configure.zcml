@@ -5,7 +5,6 @@
     
     <include package=".location" />
     <include package=".system" />
-    <include package=".utils" />
     
     <utility
     	component=".asset.sparcAssetFactory"
